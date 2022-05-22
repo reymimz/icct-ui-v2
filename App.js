@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, SafeAreaView, Text } from "react-native";
+import React from "react";
+import Navigation from "./src/navigation/stackNavigation/index";
+import Drawer from "./src/navigation/drawerNavigation/index";
+import Colors from "./src/components/Colors";
+import { auth } from "./src/constant/firebase.config";
 
-export default function App() {
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.root}>
+      {auth.currentUser ? <Drawer /> : <Navigation />}
+    </SafeAreaView>
   );
-}
+};
 
+export default App;
 const styles = StyleSheet.create({
-  container: {
+  root: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: "center",
+    alignContent: "center",
+    backgroundColor: Colors.white,
   },
 });
